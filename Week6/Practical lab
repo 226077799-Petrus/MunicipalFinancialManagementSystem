@@ -1,0 +1,127 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+
+    double salary[50];
+    double budgets[10];
+    char registrations[20][20];
+    double total=0;
+    double highest=0;
+    double lowest=0;
+    double average;
+    double search;
+    double totalBudget=0;
+    double averageBudget;
+    double temp;
+    char searchReg[20];
+    int found=0;
+
+   
+
+    for(int i=0;i<50;i++){
+        printf("Enter salary %d: ",i+1);
+        scanf("%lf",&salary[i]);
+         total=total+salary[i];
+
+        if(i==0){
+            highest=salary[i];
+            lowest=salary[i];
+            }
+            if(salary[i]>highest){
+            highest=salary[i];
+            }
+            if(salary[i]<lowest){
+            lowest=salary[i];
+        }
+    }
+
+    average=total/50;
+    printf("\n=======Salary Informaion========\n");
+
+    for(int i=0;i<50;i++){
+        printf("Salary %d: %.2f\n",i+1,salary[i]);
+    }
+
+    printf("The average salary is: %.2f\n",average);
+    printf("The highest salary is: %.2f\n",highest);
+    printf("The lowest salary is: %.2f\n",lowest);
+    printf("The Total salary is: %.2f\n",total);
+
+    printf("\nEnter salary thhat you want to search: ");
+    scanf("%f",&search);
+
+    for(int i=0;i<50;i++){
+        if(salary[i]==search){
+            printf("Salary found for employee %d\n",i+1);
+            found=1;
+        }
+    }
+
+    if(found==0){
+        printf("Salary not found\n");
+    }
+
+   
+
+    printf("\n=======Department Budgets=========\n");
+
+    for(int i=0;i<10;i++){
+        printf("Enter budget for the department %d: ",i+1);
+        scanf("%f",&budgets[i]);
+
+        totalBudget=totalBudget+budgets[i];
+    }
+
+    averageBudget=totalBudget/10;
+
+    printf("The total budget is: %.2f\n",totalBudget);
+    printf("The average budget is: %.2f\n",averageBudget);
+
+    for(int i=0;i<10-1;i++){
+        for(int j=0;j<10-i-1;j++){
+            if(budgets[j]>budgets[j+1]){
+                temp=budgets[j];
+                budgets[j]=budgets[j+1];
+                budgets[j+1]=temp;
+            }
+        }
+    }
+    
+      for(int i=0;i<10;i++){
+        printf("%.2f\n",budgets[i]);
+    }
+
+    printf("\n--- Vehicle Registrations ---\n");
+
+    for(int i=0;i<20;i++){
+        printf("Enter your registration number %d: ",i+1);
+        fgets(registrations[i],sizeof(registrations[i]), stdin);
+    }
+
+    printf("\n===========Registration information=========\n");
+
+    for(int i=0;i<20;i++){
+        printf("%s\n",registrations[i]);
+    }
+
+    printf("\nEnter the registration you want to search for: ");
+    scanf("%19s",searchReg);
+
+    found=0;
+
+    for(int i=0;i<20;i++){
+        if(strcmp(registrations[i],searchReg)==0){
+            printf("Registration found at this motor %d\n",i+1);
+            found=1;
+            break;
+        }
+    }
+
+    if(found==0){
+        printf("Registration not found\n");
+    }
+    printf("=================Thanks for taking part===================");
+
+    return 0;
+}
